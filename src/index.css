@@ -174,7 +174,7 @@ body {
     }
 
     #canvas {
-      @apply !w-full !h-[80vh] lg: !h-dvh relative z-40;
+      @apply !w-full !h-[80vh] lg:!h-dvh relative z-40;
     }
   }
 
