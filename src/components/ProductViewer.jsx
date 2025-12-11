@@ -44,7 +44,7 @@ const ProductViewer = () => {
                 </div>
             </div>
 
-            <Canvas id='canvas' camera={{position: [0, 2, 5], fov: 50, near: 0.1, far: 100 }}>
+            <Canvas id='canvas' camera={{ position: [0, 2, 5], fov: 50, near: 0.1, far: 100 }}>
                 {/* Add ambient light so you can see the color! */}
                 <StudioLights />
 

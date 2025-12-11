@@ -6,12 +6,11 @@ import ProductViewer from './components/ProductViewer'
 const App = () => {
   return (
     <main>
-        <NavBar />
-        <Hero />
-        <ProductViewer />
+      <NavBar />
+      <Hero />
+      <ProductViewer />
     </main>
   )
 }
 
 export default App
- 
