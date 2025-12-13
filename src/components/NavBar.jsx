@@ -8,12 +8,15 @@ const NavBar = () => {
         <img src="/logo.svg" alt="Apple Logo" />
 
         <ul>
-          {navLists.map((nav) => (
-            <li key={nav}>
-               {/* FIX 2: Fixed href syntax to be a proper string/variable */}
-              <a href={`/${nav}`}>
-                {nav}
+          {navLists.map((item) => (
+            // FIX: Use item.label for the Key (must be unique string)
+            <li key={item.label}>
+              
+              {/* FIX: Use item.label for the link text (must be string) */}
+              <a href={`/${item.label}`} className="text-white opacity-80 hover:opacity-100 transition-all">
+                {item.label}
               </a>
+              
             </li>
           ))}
         </ul>

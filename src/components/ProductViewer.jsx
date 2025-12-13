@@ -2,29 +2,31 @@ import React from 'react'
 import useMacBookStore from '../store'
 import clsx from 'clsx'
 import { Canvas } from '@react-three/fiber'
-import { Box, OrbitControls } from '@react-three/drei';
-import MacbookModel14 from './models/Macbook-14';
-import StudioLights from './StudioLights';
+import StudioLights from './three/StudioLights';
+import ModelSwitcher from './three/modelSwitcher.jsx';
+import { useMediaQuery } from 'react-responsive';
 
 const ProductViewer = () => {
     const { color, scale, setColor, setScale } = useMacBookStore();
+
+    const isMobile = useMediaQuery({ query: '(max-width: 1024px)' });
 
     return (
         <section id='product-viewer'>
             <h2>Take a closer look.</h2>
 
             <div className='controls'>
-                <p className='info text-center' >Macbook {scale === 0.06 ? '14"' : '16"'} in {color === 'abd5bd' ? 'Silver' : 'Space Black'}</p>
+                <p className='info text-center' >Macbook {scale === 0.06 ? '14"' : '16"'} in {color === '#C0C0C0' ? 'Silver' : 'Space Black'}</p>
 
                 <div className="flex-center gap-5 mt-5">
                     <div className="color-control">
                         <div
-                            onClick={() => setColor('abd5bd')}
-                            className={clsx('bg-neutral-300', color === 'abd5bd' && 'active')}
+                            onClick={() => setColor('#C0C0C0')}
+                            className={clsx('bg-neutral-300', color === '#C0C0C0' && 'active')}
                         />
                         <div
-                            onClick={() => setColor('2e2c2e')}
-                            className={clsx('bg-gray-900', color === '2e2c2e' && 'active')}
+                            onClick={() => setColor('2e2e2e')}
+                            className={clsx('bg-gray-900', color === '2e2e2e' && 'active')}
                         />
                     </div>
 
@@ -48,17 +50,7 @@ const ProductViewer = () => {
                 {/* Add ambient light so you can see the color! */}
                 <StudioLights />
 
-                {/* FIX: Add the '#' before the color variable 
-                <Box
-                    position={[0, 0, 0]}
-                    scale={10 * scale}
-                    material-color={`#${color}`}
-                ></Box> */}
-
-                <MacbookModel14 scale={0.06} position={[0, 0, 0]} />
-
-
-                <OrbitControls enablePan={false} minDistance={3} maxDistance={10} enableZoom={false} />
+                <ModelSwitcher scale={isMobile ? scale - 0.03 : scale} color={color} isMobile={isMobile} />
             </Canvas>
 
         </section>
