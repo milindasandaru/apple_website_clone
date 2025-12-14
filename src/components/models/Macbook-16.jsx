@@ -10,11 +10,29 @@ Title: macbook pro M3 16 inch 2024
 
 import React from 'react'
 import { useGLTF, useTexture } from '@react-three/drei'
+import useMacBookStore from '../../store';
+import { noChangeParts } from '../../constants';
+import { useEffect } from 'react';
+import * as THREE from 'three';
 
 export default function MacbookModel16(props) {
-  const { nodes, materials } = useGLTF('/models/macbook-16-transformed.glb')
+  const { nodes, materials, scene } = useGLTF('/models/macbook-16-transformed.glb')
+  const { color } = useMacBookStore();
 
   const texture = useTexture('/screen.png');
+
+  useEffect(() => {
+    // Update material colors based on selected color
+    scene.traverse((child) => {
+      if (child.isMesh) {
+        if(!noChangeParts.includes(child.name)){
+          // Always use a valid hex color string
+          const hexColor = color.startsWith('#') ? color : `#${color}`;
+          child.material.color = new THREE.Color(hexColor);
+        }
+      }
+    });
+  }, [color]);
 
   return (
     <group {...props} dispose={null}>

@@ -34,7 +34,7 @@ const moveGroup = (group, x) => {
     });
 }
 
-const modelSwitcher = ({ scale, isMobile }) => {
+const ModelSwitcher = ({ scale, isMobile }) => {
 
     const smallMacbookRef = useRef();
     const largeMacbookRef = useRef();
@@ -84,4 +84,4 @@ const modelSwitcher = ({ scale, isMobile }) => {
     )
 }
 
-export default modelSwitcher
+export default ModelSwitcher
