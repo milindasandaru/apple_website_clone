@@ -13,13 +13,15 @@ import { useGLTF, useTexture } from '@react-three/drei'
 import useMacBookStore from '../../store';
 import { noChangeParts } from '../../constants';
 import { useEffect } from 'react';
-import * as THREE from 'three';
+import { Color, SRGBColorSpace } from 'three';
 
 export default function MacbookModel16(props) {
   const { nodes, materials, scene } = useGLTF('/models/macbook-16-transformed.glb')
   const { color } = useMacBookStore();
 
   const texture = useTexture('/screen.png');
+  texture.colorSpace = SRGBColorSpace;
+  texture.needsUpdate = true;
 
   useEffect(() => {
     // Update material colors based on selected color
@@ -28,7 +30,7 @@ export default function MacbookModel16(props) {
         if(!noChangeParts.includes(child.name)){
           // Always use a valid hex color string
           const hexColor = color.startsWith('#') ? color : `#${color}`;
-          child.material.color = new THREE.Color(hexColor);
+          child.material.color = new Color(hexColor);
         }
       }
     });
