@@ -48,4 +48,4 @@ const StudioLights = () => {
     )
 }
 
-export default StudioLights
+export default StudioLights;
