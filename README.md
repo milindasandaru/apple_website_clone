@@ -66,4 +66,3 @@ Lightweight Apple website clone built with React and Vite. This repo reproduces 
 **License**
 - This project is a learning prototype. Refer to original assets' licenses in `public/models` where applicable.
 
-If you want, I can also add a short "How to run locally" section with environment variable examples or add debugging aids (ScrollTrigger markers, Canvas error boundary).
